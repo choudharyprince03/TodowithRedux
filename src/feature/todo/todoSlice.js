@@ -24,10 +24,14 @@ export const todoSlice = createSlice({
         }, 
         deleteTodo:(state,action)=>{
             state.todos = state.todos.filter((todo)=> todo.id!== action.payload)
+        },
+        updateTodo: (state,action)=>{
+            
+            state.todos = state.todos.map((todo)=> todo.id === action.payload.id ? {...todo,text: action.payload.text} : todo)
         }
     }
 })
 //exporting the slice
-export const {addTodo,deleteTodo} = todoSlice.actions
+export const {addTodo,deleteTodo,updateTodo} = todoSlice.actions
 //store ko bhi awareness chahiye reducers ki isliye unhe bhi export karenge 
 export default todoSlice.reducer ;   
